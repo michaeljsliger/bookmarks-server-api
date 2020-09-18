@@ -10,6 +10,9 @@
     "deploy": "git push heroku master",
     "dev": "nodemon src/server.js"
   },
+  "engines": {
+    "node": "v12.18.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
