@@ -5,6 +5,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const bookmarkRouter = require('./bookmarkRouter');
+const validateBearerToken = require('./validateBearerToken');
 
 const app = express();
 
@@ -15,12 +16,11 @@ app.use(helmet());
 app.use(cors());
 
 
+app.use(validateBearerToken);
 
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
-});
+app.use(bookmarkRouter);
 
-app.get('/bookmark', bookmarkRouter);
+
 
 
 
