@@ -10,18 +10,18 @@ const logger = require('./logger');
 
 
 bookmarkRouter 
-    .route('/bookmark')
+    .route('/bookmarks')
     .get((req, res) => {
         res.json(BOOKMARKS);
     })
     .post(bodyParser, (req, res) => {
-        const { title, url, rating, desc } = req.body;
+        const { title, url, rating, description } = req.body;
         if (!title || !url || !rating) {
             return res.status(406).send('Title, URL, and Rating must be included in POST request');
         }
         const id = uuid();
         const newBookmark = {
-            id, title, url, rating, desc
+            id, title, url, rating, description
         };
         BOOKMARKS.push(newBookmark);
         console.log(BOOKMARKS);
@@ -30,7 +30,7 @@ bookmarkRouter
     });
 
 bookmarkRouter
-    .route('/bookmark/:id')
+    .route('/bookmarks/:id')
     .get((req, res) => {
         const { id } = req.params;
         const bookmark = BOOKMARKS.find(el => el.id === id);
